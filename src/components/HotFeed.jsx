@@ -180,7 +180,7 @@ export default function HotFeed() {
             <div className="mx-auto mb-3 h-8 w-3/4 animate-pulse rounded-full bg-white/10" />
             <div className="mx-auto h-3 w-5/6 animate-pulse rounded-full bg-white/10" />
             {isRegenerating && (
-              <p className="mt-6 font-ui text-[10px] uppercase tracking-[0.28em] text-white/40">
+              <p className="mt-6 font-ui text-[10px] tracking-[0.28em] text-white/40 uppercase">
                 Fetching a fresh pulse…
               </p>
             )}
@@ -195,7 +195,7 @@ export default function HotFeed() {
       <section className="mx-auto w-full max-w-xl px-5 sm:px-0" data-testid="hot-feed-empty">
         <HotHeader onRegenerate={handleRegenerate} regenerating={isRegenerating} />
         <div className="mx-auto flex h-[280px] w-full max-w-md items-center justify-center rounded-3xl border border-white/10 bg-white/[0.02] px-8 text-center">
-          <p className="font-editorial text-sm italic text-white/50">
+          <p className="font-editorial text-sm text-white/50 italic">
             The Pulse is warming up. Refresh in a minute — or start with your own spark below.
           </p>
         </div>
@@ -278,7 +278,7 @@ export default function HotFeed() {
             >
               <ArrowUp size={11} />
             </motion.div>
-            <p className="font-ui text-[9px] uppercase tracking-[0.28em] text-white/45">
+            <p className="font-ui text-[9px] tracking-[0.28em] text-white/45 uppercase">
               Swipe up
             </p>
           </div>
@@ -309,10 +309,10 @@ function HotHeader({
           <Flame size={12} weight="fill" />
         </motion.span>
         <div>
-          <p className="font-ui text-[10px] uppercase tracking-[0.32em] text-white/60">
+          <p className="font-ui text-[10px] tracking-[0.32em] text-white/60 uppercase">
             Hot Now · India
           </p>
-          <p className="font-ui text-[9px] uppercase tracking-[0.24em] text-white/30">
+          <p className="font-ui text-[9px] tracking-[0.24em] text-white/30 uppercase">
             Double-tap any card to go deeper
           </p>
         </div>
@@ -320,7 +320,7 @@ function HotHeader({
       <div className="flex items-center gap-2">
         {total > 0 && streaming && total < expected && (
           <span
-            className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-2 py-0.5 font-ui text-[9px] uppercase tracking-[0.22em] text-white/55"
+            className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-2 py-0.5 font-ui text-[9px] tracking-[0.22em] text-white/55 uppercase"
             data-testid="hot-streaming"
           >
             <motion.span
@@ -333,7 +333,7 @@ function HotHeader({
         )}
         {total > 0 && (
           <span
-            className="font-ui text-[10px] uppercase tracking-[0.28em] text-white/45"
+            className="font-ui text-[10px] tracking-[0.28em] text-white/45 uppercase"
             data-testid="hot-progress"
           >
             {String(Math.min(activeIdx + 1, total)).padStart(2, "0")}
@@ -349,11 +349,10 @@ function HotHeader({
             data-testid="hot-regenerate-btn"
             aria-label="Regenerate Hot Now cards"
             title="Regenerate — fetch a fresh pulse"
-            className={`inline-flex items-center gap-1 rounded-full border border-white/12 px-2 py-1 font-ui text-[9px] uppercase tracking-[0.22em] transition-all no-tap-zoom ${
-              canRegen
-                ? "bg-white/[0.04] text-white/80 hover:border-white/25 hover:bg-white/[0.08] hover:text-white active:scale-95"
-                : "bg-white/[0.02] text-white/35 cursor-wait"
-            }`}
+            className={`inline-flex items-center gap-1 rounded-full border border-white/12 px-2 py-1 font-ui text-[9px] uppercase tracking-[0.22em] transition-all no-tap-zoom ${canRegen
+              ? "bg-white/[0.04] text-white/80 hover:border-white/25 hover:bg-white/[0.08] hover:text-white active:scale-95"
+              : "bg-white/[0.02] text-white/35 cursor-wait"
+              }`}
           >
             <motion.span
               animate={regenerating ? { rotate: 360 } : { rotate: 0 }}
@@ -520,12 +519,12 @@ function HotCard({ card, idx, total, showHint, onTap, onGoDeep, onRegenerate }) 
       data-testid={`hot-card-${idx}`}
       onClick={handleCardClick}
       onDoubleClick={handleCardDouble}
-      className="relative flex h-full w-full flex-col px-6 pb-6 pt-5 sm:px-8"
+      className="relative flex h-full w-full flex-col px-6 pt-5 pb-6 sm:px-8"
       style={{ touchAction: "pan-y" }}
     >
       {/* Position counter only — no category/persona pills */}
-      <div className="flex items-center justify-end flex-shrink-0">
-        <span className="font-ui text-[9px] uppercase tracking-[0.28em] text-white/35">
+      <div className="flex flex-shrink-0 items-center justify-end">
+        <span className="font-ui text-[9px] tracking-[0.28em] text-white/35 uppercase">
           {String(idx + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
         </span>
       </div>
@@ -534,7 +533,7 @@ function HotCard({ card, idx, total, showHint, onTap, onGoDeep, onRegenerate }) 
       {card.topic && (
         <div
           data-testid={`hot-topic-${idx}`}
-          className="mt-4 font-ui text-[11px] uppercase tracking-[0.22em] text-white/45 line-clamp-1"
+          className="line-clamp-1 mt-4 font-ui text-[11px] tracking-[0.22em] text-white/45 uppercase"
         >
           {card.topic}
         </div>
@@ -543,7 +542,7 @@ function HotCard({ card, idx, total, showHint, onTap, onGoDeep, onRegenerate }) 
       {/* Headline */}
       <h2
         data-testid={`hot-headline-${idx}`}
-        className="mt-2 font-editorial text-[26px] leading-[1.14] text-white sm:text-[28px] flex-shrink-0"
+        className="mt-2 flex-shrink-0 font-editorial text-[26px] leading-[1.14] text-white sm:text-[28px]"
       >
         {card.headline}
       </h2>
@@ -567,7 +566,7 @@ function HotCard({ card, idx, total, showHint, onTap, onGoDeep, onRegenerate }) 
       </div>
 
       {/* Bottom row: source + Back Story pill on right. Actions in ActionBar below. */}
-      <div className="mt-4 flex items-center justify-between gap-3 flex-shrink-0 pb-14">
+      <div className="mt-4 flex flex-shrink-0 items-center justify-between gap-3 pb-14">
         {card.source_url ? (
           <a
             href={card.source_url}
@@ -588,7 +587,7 @@ function HotCard({ card, idx, total, showHint, onTap, onGoDeep, onRegenerate }) 
         <button
           data-testid={`hot-backstory-btn-${idx}`}
           onClick={(e) => { e.stopPropagation(); setSeededQuestion(""); setShowBackStory(true); }}
-          className="inline-flex items-center gap-1.5 rounded-full border border-fuchsia-400/25 bg-fuchsia-500/10 px-3 py-1.5 font-ui text-[11px] font-medium text-fuchsia-200/90 transition hover:bg-fuchsia-500/20 hover:border-fuchsia-400/50 flex-shrink-0"
+          className="inline-flex flex-shrink-0 items-center gap-1.5 rounded-full border border-fuchsia-400/25 bg-fuchsia-500/10 px-3 py-1.5 font-ui text-[11px] font-medium text-fuchsia-200/90 transition hover:border-fuchsia-400/50 hover:bg-fuchsia-500/20"
         >
           <span className="h-1 w-1 rounded-full bg-fuchsia-300" />
           Back Story
@@ -597,7 +596,7 @@ function HotCard({ card, idx, total, showHint, onTap, onGoDeep, onRegenerate }) 
 
       {/* Bottom ActionBar — same layout as Feed (Save · Ask · Listen · New · Mic) */}
       <div className="pointer-events-none absolute inset-x-0 bottom-4 z-30 flex justify-center px-3 sm:bottom-6">
-        <div className="pointer-events-auto flex items-center gap-0.5 rounded-full border border-white/10 bg-[#121214]/95 px-1 py-1 backdrop-blur-xl shadow-[0_-2px_20px_rgba(0,0,0,0.35)]">
+        <div className="pointer-events-auto flex items-center gap-0.5 rounded-full border border-white/10 bg-[#121214]/95 px-1 py-1 shadow-[0_-2px_20px_rgba(0,0,0,0.35)] backdrop-blur-xl">
           <HotIconBtn testId={`hot-save-btn-${idx}`} label={saved ? "Saved" : "Save"} onClick={handleSave} active={saved}>
             <BookmarkSimple size={17} weight={saved ? "fill" : "regular"} />
           </HotIconBtn>
@@ -640,7 +639,7 @@ function HotCard({ card, idx, total, showHint, onTap, onGoDeep, onRegenerate }) 
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.5 }}
-          className="pointer-events-none absolute left-1/2 top-2 -translate-x-1/2 rounded-full border border-white/15 bg-[#121214]/95 px-3 py-1 font-ui text-[9px] uppercase tracking-[0.24em] text-white/70 backdrop-blur-md"
+          className="pointer-events-none absolute top-2 left-1/2 -translate-x-1/2 rounded-full border border-white/15 bg-[#121214]/95 px-3 py-1 font-ui text-[9px] tracking-[0.24em] text-white/70 uppercase backdrop-blur-md"
         >
           Swipe · Double-tap deeper
         </motion.div>
@@ -658,9 +657,8 @@ function HotIconBtn({ children, label, onClick, testId, active, disabled }) {
       aria-label={label}
       disabled={disabled}
       style={{ touchAction: "manipulation" }}
-      className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors disabled:opacity-40 ${
-        active ? "bg-white text-[#0C0C0D]" : "text-white/85 hover:bg-white/10 hover:text-white"
-      }`}
+      className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors disabled:opacity-40 ${active ? "bg-white text-[#0C0C0D]" : "text-white/85 hover:bg-white/10 hover:text-white"
+        }`}
     >
       {children}
     </button>
@@ -674,12 +672,12 @@ function ExpandedCardSheet({ card, idx, open, onClose }) {
   return ReactDOM.createPortal(
     <div
       data-testid={`hot-expanded-${idx}`}
-      className="fixed inset-0 z-[95] bg-[#0C0C0D] overflow-y-auto"
+      className="fixed inset-0 z-[95] overflow-y-auto bg-[#0C0C0D]"
       onClick={onClose}
     >
-      <div className="min-h-full flex flex-col px-6 pt-6 pb-24 sm:px-10" onClick={(e) => e.stopPropagation()}>
-        <div className="flex items-center justify-between mb-6">
-          <span className="font-ui text-[10px] uppercase tracking-[0.28em] text-white/40">
+      <div className="flex min-h-full flex-col px-6 pt-6 pb-24 sm:px-10" onClick={(e) => e.stopPropagation()}>
+        <div className="mb-6 flex items-center justify-between">
+          <span className="font-ui text-[10px] tracking-[0.28em] text-white/40 uppercase">
             {String(idx + 1).padStart(2, "0")}
           </span>
           <button
@@ -691,14 +689,14 @@ function ExpandedCardSheet({ card, idx, open, onClose }) {
           </button>
         </div>
         {card.topic && (
-          <div className="mb-3 font-ui text-[11px] uppercase tracking-[0.22em] text-white/45">
+          <div className="mb-3 font-ui text-[11px] tracking-[0.22em] text-white/45 uppercase">
             {card.topic}
           </div>
         )}
         <h2 className="mb-6 font-editorial text-[28px] leading-[1.16] text-white sm:text-[32px]">
           {card.headline}
         </h2>
-        <p className="font-editorial text-[16px] leading-[1.65] text-white/90 whitespace-pre-wrap sm:text-[17px]">
+        <p className="font-editorial text-[16px] leading-[1.65] whitespace-pre-wrap text-white/90 sm:text-[17px]">
           {card.text}
         </p>
         {card.source_url && (
@@ -706,7 +704,7 @@ function ExpandedCardSheet({ card, idx, open, onClose }) {
             href={card.source_url}
             target="_blank"
             rel="noreferrer"
-            className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 font-ui text-[12px] text-white/60 hover:border-white/25 hover:text-white/90 w-fit"
+            className="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 font-ui text-[12px] text-white/60 hover:border-white/25 hover:text-white/90"
           >
             <LinkIcon size={13} />
             <span>{card.source_title || "Read the source"}</span>
@@ -772,12 +770,13 @@ function BackStorySheet({ card, idx, open, onClose, seededQuestion }) {
               setBackstory("Couldn't load the back story — try again in a moment.");
               setLoading(false);
             }
-          } catch {}
+          } catch { }
         }
       }
       setLoading(false);
     }).catch(() => setLoading(false));
     return () => ctrl.abort();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, card?.id]);
 
   const askFollowup = async () => {
@@ -824,10 +823,10 @@ function BackStorySheet({ card, idx, open, onClose, seededQuestion }) {
                 if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
               }, 30);
             }
-          } catch {}
+          } catch { }
         }
       }
-    } catch {}
+    } catch { }
     setChatStreaming(false);
   };
 
@@ -845,7 +844,7 @@ function BackStorySheet({ card, idx, open, onClose, seededQuestion }) {
       >
         {/* Sticky header */}
         <div className="flex items-center justify-between border-b border-white/8 bg-[#0E0E10] px-6 py-4">
-          <span className="font-ui text-[10px] uppercase tracking-[0.28em] text-fuchsia-300/70">
+          <span className="font-ui text-[10px] tracking-[0.28em] text-fuchsia-300/70 uppercase">
             Back Story
           </span>
           <button
@@ -860,7 +859,7 @@ function BackStorySheet({ card, idx, open, onClose, seededQuestion }) {
         {/* Scrollable body */}
         <div ref={scrollRef} className="flex-1 overflow-y-auto px-6 py-5">
           {card.topic && (
-            <div className="mb-2 font-ui text-[11px] uppercase tracking-[0.22em] text-white/50">
+            <div className="mb-2 font-ui text-[11px] tracking-[0.22em] text-white/50 uppercase">
               {card.topic}
             </div>
           )}
@@ -871,7 +870,7 @@ function BackStorySheet({ card, idx, open, onClose, seededQuestion }) {
           {/* Rendered backstory */}
           <div
             data-testid={`hot-backstory-body-${idx}`}
-            className="font-editorial text-[14px] leading-[1.65] text-white/85 whitespace-pre-wrap"
+            className="font-editorial text-[14px] leading-[1.65] whitespace-pre-wrap text-white/85"
           >
             {backstory || (loading ? "" : "No back story available yet.")}
             {loading && (
@@ -906,7 +905,7 @@ function BackStorySheet({ card, idx, open, onClose, seededQuestion }) {
               onKeyDown={(e) => { if (e.key === "Enter") askFollowup(); }}
               placeholder="Ask anything about this insight…"
               data-testid={`hot-backstory-input-${idx}`}
-              className="flex-1 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 font-ui text-[13px] text-white placeholder:text-white/35 outline-none focus:border-fuchsia-400/40"
+              className="flex-1 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 font-ui text-[13px] text-white outline-none placeholder:text-white/35 focus:border-fuchsia-400/40"
             />
             <button
               onClick={askFollowup}
