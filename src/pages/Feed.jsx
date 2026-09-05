@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { toast } from "sonner";
 import { ArrowLeft, Layers, Loader2 } from "lucide-react";
 import SwipeStack from "@/components/SwipeStack";
 import { InsightCardView } from "@/components/ConsumerCard";
@@ -57,7 +56,10 @@ export default function Feed() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => { const c = cards[activeIdx]; if (c) recordHistory({ id: c.id, headline: c.headline, level: depth }); }, [activeIdx, currentDeck?.id]);
+  useEffect(() => { const c = cards[activeIdx]; if (c) recordHistory({ id: c.id, headline: c.headline, level: depth }); },
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [activeIdx, currentDeck?.id]);
 
   const updateTop = (patch) => setDeckStack((cur) => {
     if (!cur.length) return cur;
@@ -91,7 +93,7 @@ export default function Feed() {
     <div className="relative h-[100dvh] w-full overflow-hidden bg-[#0C0C0D]" data-testid="feed">
       {/* Top bar */}
       <header className="pointer-events-none absolute inset-x-0 top-0 z-40 flex items-center justify-between gap-2 px-3 pt-3 sm:px-5 sm:pt-5">
-        <button data-testid="feed-back" onClick={back} className="pointer-events-auto flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-[#121214]/95 text-white/80 backdrop-blur-md no-tap-zoom"><ArrowLeft className="h-4 w-4" /></button>
+        <button data-testid="feed-back" onClick={back} className="no-tap-zoom pointer-events-auto flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-[#121214]/95 text-white/80 backdrop-blur-md"><ArrowLeft className="h-4 w-4" /></button>
         <div className="pointer-events-auto flex min-w-0 flex-1 items-center justify-center gap-1.5 truncate rounded-full border border-white/10 bg-[#121214]/95 px-3 py-1.5 text-center font-ui text-[11px] text-white/70 backdrop-blur-md">
           {depth > 1 && <Layers className="h-3 w-3 text-fuchsia-300" />}
           {depth > 1 ? `Level ${depth} · ` : ""}{currentDeck?.label}
@@ -101,7 +103,7 @@ export default function Feed() {
 
       {/* Progress + depth dots */}
       <div className="pointer-events-none absolute inset-x-0 top-14 z-20 flex flex-col items-center gap-2 sm:top-16">
-        <span className="font-ui text-[10px] uppercase tracking-[0.28em] text-white/45">
+        <span className="font-ui text-[10px] tracking-[0.28em] text-white/45 uppercase">
           {String(Math.min(activeIdx + 1, total)).padStart(2, "0")}<span className="mx-1.5 text-white/20">/</span>{String(total).padStart(2, "0")}
         </span>
         {depth > 1 && (
